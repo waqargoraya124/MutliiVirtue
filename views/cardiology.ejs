@@ -1,0 +1,64 @@
+<%- include('./layouts/header') %>
+
+<div style="border: 2.4px solid #EAEAEA;
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;" class="container">
+  <h1 >Cardiology Department</h1>
+  
+  <div class="department-info" >
+    <p>
+      Welcome to our Cardiology department, where your heart health is our top priority. Our team of skilled cardiologists and healthcare professionals is dedicated to providing comprehensive care for all aspects of heart disease.
+    </p>
+    
+    <p>
+      We offer a wide range of services, including diagnostic tests, preventive care, and advanced treatments for various heart conditions. Whether you're seeking routine check-ups, managing a chronic condition, or recovering from a cardiac event, we're here to support you every step of the way.
+    </p>
+    
+    <p>
+      At our state-of-the-art facility, we utilize the latest technologies and treatment modalities to ensure the highest standards of care. Our compassionate and experienced team will work closely with you to develop a personalized treatment plan tailored to your unique needs and goals.
+    </p>
+    
+    <p>
+      Your heart health is too important to ignore. Schedule an appointment with our cardiology department today and take control of your cardiovascular health.
+    </p>
+    
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisi vitae ex volutpat tempor. Duis non enim id risus fermentum placerat. Proin mollis nunc nec libero facilisis, ut eleifend felis ultrices. Morbi sed lectus felis. Aliquam vel nisi a metus malesuada aliquet. Nullam at feugiat libero. Integer consectetur purus ut tellus gravida, id posuere enim convallis. Suspendisse potenti.
+    </p>
+    
+    <p>
+      Fusce consectetur, nisl id luctus varius, tortor nunc ultrices turpis, ut fermentum velit libero quis nulla. Sed commodo pharetra bibendum. Integer vel nisi quis magna congue congue eu ac justo. Fusce vitae erat nec velit suscipit lacinia. Donec auctor eleifend neque a feugiat. Phasellus quis semper nulla. Curabitur sem ligula, posuere ac leo et, sodales commodo velit.
+    </p>
+    
+    <p>
+      Vivamus euismod sagittis felis, ac volutpat justo tincidunt sed. Cras malesuada metus vel neque vestibulum, non tincidunt est iaculis. Curabitur interdum metus a quam lobortis, sed venenatis urna fermentum. Sed efficitur erat vel tellus viverra, at fringilla nisi dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas accumsan lectus nec neque vestibulum, ut lobortis felis aliquet.
+    </p>
+    <br>
+    <br>
+    <div class="row g-4">
+      <% doctors.forEach(doctor => { %>
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div class="team-item position-relative rounded overflow-hidden">
+                  <div class="overflow-hidden">
+                      <img class="img-fluid" src="<%= doctor.photoUrl %>" alt="<%= doctor.name %> Photo">
+                  </div>
+                  <div class="team-text bg-light text-center p-4">
+                      <h5><a href="/doctor/<%= doctor.id %>"><%= doctor.name %></a></h5>
+                      <p class="text-primary"><%= doctor.specialization %></p>
+                      <div class="team-social text-center">
+                          <a class="btn btn-square" href="<%= doctor.socialMedia1  %> " target="_blank"><i class="fab fa-facebook-f"></i></a>
+                          <a class="btn btn-square" href="<%= doctor.socialMedia2  %>" target="_blank"><i class="fab fa-twitter"></i></a>
+                          <!-- <a class="btn btn-square" href="#"><i class="fab fa-instagram"></i></a> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      <% }) %>
+  </div>
+  </div>
+</div>
+
+
+<%- include('./layouts/footer') %>

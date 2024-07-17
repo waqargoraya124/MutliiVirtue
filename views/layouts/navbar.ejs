@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:98px">
+    <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <div class="centerrr">
+         <img src="https://res.cloudinary.com/dyuddvjlv/image/upload/v1717312806/q43cr9bsoapvgdqgr4li.png" style="    width: 130px;
+         margin-top: 12px;" alt="">
+        </div>
+     </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto p-2" style="background-color: #F8F9FA;">
+        <a href="/" class="nav-item nav-link ">Home</a>
+                
+                <% if (!user || user.role === 'user') { %> <!-- Check if user is not authenticated or role is user -->
+                    <a href="/about" class="nav-item nav-link">About</a>
+                <% } %>
+                <% if (user) { %> <!-- Start of dynamic navigation -->
+                    <a class="nav-link" href="/profile">Profile</a>
+                    <a class="nav-link" href="/doctors-data">All Doctors</a>
+                  
+                    <% if (user.role !== 'admin') { %>
+                        <a href="/gethospital" class="nav-item nav-link">Hospitals</a>
+                        <a href="/labs" class="nav-item nav-link">Labs</a>
+                      <% } %>
+                  <% if (user.role === 'admin') { %>
+      
+                      <a class="nav-link" href="/users">Manage Users</a>
+                      <a class="nav-link" href="/contact-messages">Messages</a>
+                      <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Add</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                            <a href="/add-lab" class="dropdown-item">Labs</a>
+                            <a href="/hospitals" class="dropdown-item">Hospitals</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">See</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                            <a href="/labs" class="dropdown-item">Labs</a>
+                            <a href="/gethospital" class="dropdown-item">Hospitals</a>
+                        </div>
+                    </div>
+                  <% }  %>
+                  <% if (user.role === 'doctor') { %>
+                      <a class="nav-link" href="/appointments"> Appointments</a>
+                      <a class="nav-link" href="/doctor/data-input">Update data</a>
+                  <% } %>
+                <% } %> <!-- End of dynamic navigation -->
+                
+                
+                <% if (!user || user.role === 'user') { %> <!-- Check if user is not authenticated or role is user -->
+                    <a href="/contact" class="nav-item nav-link">Contact</a>
+                <% } %>
+            </div>
+            <% if (user) { %> 
+            <a href="/logout" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">logout<i class="fa fa-arrow-right ms-3"></i></a>
+              
+            <% } else { %>
+              
+                <!-- <a href="/register" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Register<i class="fa fa-arrow-right ms-3"></i></a> -->
+                <a href="/login" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+                     
+            <% } %>
+        
+            <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ><a href="/logout"></a></button> -->
+      </ul>
+      
+
+    </div>
+  </nav>

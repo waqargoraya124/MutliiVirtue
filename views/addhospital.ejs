@@ -1,0 +1,21 @@
+<%- include('./layouts/header') %>
+
+<div class="cenn">
+    <h1 style="color: white;">ADD HOSPITAL</h1>
+
+    <!-- Form for adding a hospital -->
+    <form action="/add-hospital" method="POST" enctype="multipart/form-data" class="lg-form formm">
+        <input type="text" name="name" placeholder="Hospital Name">
+        <input type="text" name="location" placeholder="Location">
+        <input type="file" name="photo" accept="image/*">
+        <input type="text" name="mapEmbed" placeholder="Google Maps Embed Iframe">
+
+        <div>
+            <input type="submit" value="Add Hospital" />
+          </div>
+    </form>
+
+    <!-- Existing content after the forms -->
+</div>
+
+<%- include('./layouts/footer') %>

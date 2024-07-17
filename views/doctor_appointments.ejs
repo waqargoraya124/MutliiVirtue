@@ -1,0 +1,21 @@
+<!-- doctor_appointments.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointments</title>
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dyuddvjlv/image/upload/v1717058679/ys7jivuaqyb0yzncfvef.png">
+    
+</head>
+<body>
+    <h1>Doctor Appointments</h1>
+    <h2>Doctor: <%= user.name %></h2>
+
+    <ul>
+        <% doctorAppointments.forEach(appointment => { %>
+            <li><%= appointment.user.name %> - <%= appointment.appointmentDate %></li>
+        <% }) %>
+    </ul>
+</body>
+</html>

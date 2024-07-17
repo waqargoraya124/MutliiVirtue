@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dyuddvjlv/image/upload/v1717058679/ys7jivuaqyb0yzncfvef.png">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small>New York</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <small class="far fa-clock text-primary me-2"></small>
+                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-phone-alt text-primary me-2"></small>
+                    <small>+92 345 6789</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav style="height:98px"  class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+           <div class="centerrr">
+            <img src="https://res.cloudinary.com/dyuddvjlv/image/upload/v1717312806/q43cr9bsoapvgdqgr4li.png" style="    width: 130px;
+            margin-top: 12px;" alt="">
+           </div>
+        </a>
+        <!-- <img src="../img/logo.png" alt=""> -->
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav m-auto p-4 p-lg-0" style="background-color: white;">
+                <a href="/" class="nav-item nav-link active">Home</a>
+                
+                <% if (!user || user.role === 'user') { %> <!-- Check if user is not authenticated or role is user -->
+                    <a href="/about" class="nav-item nav-link">About</a>
+                <% } %>
+                <% if (user) { %> <!-- Start of dynamic navigation -->
+                    <a class="nav-link" href="/profile">Profile</a>
+                    <a class="nav-link" href="/doctors-data">All Doctors</a>
+                  
+                    <% if (user.role !== 'admin') { %>
+                        <a href="/gethospital" class="nav-item nav-link">Hospitals</a>
+                        <a href="/labs" class="nav-item nav-link">Labs</a>
+                      <% } %>
+                  <% if (user.role === 'admin') { %>
+      
+                      <a class="nav-link" href="/users">Manage Users</a>
+                      <a class="nav-link" href="/contact-messages">Messages</a>
+                      <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Add</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                            <a href="/add-lab" class="dropdown-item">Labs</a>
+                            <a href="/hospitals" class="dropdown-item">Hospitals</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">See</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                            <a href="/labs" class="dropdown-item">Labs</a>
+                            <a href="/gethospital" class="dropdown-item">Hospitals</a>
+                        </div>
+                    </div>
+                  <% }  %>
+                  <% if (user.role === 'doctor') { %>
+                      <a class="nav-link" href="/appointments"> Appointments</a>
+                      <a class="nav-link" href="/doctor/data-input">Update data</a>
+                  <% } %>
+                <% } %> <!-- End of dynamic navigation -->
+                
+                
+                <% if (!user || user.role === 'user') { %> <!-- Check if user is not authenticated or role is user -->
+                    <a href="/contact" class="nav-item nav-link">Contact</a>
+                <% } %>
+            </div>
+            <% if (user) { %> 
+            <a href="/logout" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">logout<i class="fa fa-arrow-right ms-3"></i></a>
+              
+            <% } else { %>
+              
+                <!-- <a href="/register" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Register<i class="fa fa-arrow-right ms-3"></i></a> -->
+                <a href="/login" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+                     
+            <% } %>
+          </div>
+      </nav>
+      
+      <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>      </h1>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navbar End -->
+
+    <div class="page-content page-container" id="page-content">
+      <div class="padding">
+          <div class="row container cen d-flex justify-content-center">
+  <div class="col-xl-6 wid col-md-12">
+                                                  <div class="card user-card-full">
+                                                      <div class="row m-l-0 m-r-0">
+                                                          <div class="col-sm-4 widt bg-c-lite-green user-profile">
+                                                              <div class="card-block text-center text-white">
+                                                                  <div class="m-b-25 defimg">
+                                                                      <img src="<%= person.photoUrl  %>" class="img-radius" alt="User-Profile-Image">
+                                                                  </div>
+                                                                  <h6 class="f-w-600"><%= person.name %></h6>
+                                                                  <p><%= person.role === 'user' ? 'Patient' : person.role %></p>
+
+                                                                  <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                                              </div>
+                                                          </div>
+                                                          <div class="col-sm-8">
+                                                              <div class="card-block">
+                                                                  <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                                                  <div class="row">
+                                                                      <div class="col-sm-6">
+                                                                          <p class="m-b-10 f-w-600">Email</p>
+                                                                          <h6 class="text-muted f-w-400"><%= person.email %></h6>
+                                                                      </div>
+                                                                     
+                                                                      <div class="col-sm-6">
+                                                                          <p class="m-b-10 f-w-600">Phone</p>
+                                                                          <h6 class="text-muted f-w-400"><%= person.phone %></h6>
+                                                                      </div>
+                                                                  </div>
+                                                                  <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">More</h6>
+                                                                  <div class="row">
+                                                                      <div class="col-sm-6">
+                                                                          <p class="m-b-10 f-w-600">Role</p>
+                                                                          <h6 class="text-muted f-w-400"><%= person.role %></h6>
+                                                                      </div>
+                                                                      <div class="col-sm-6">
+                                                                          <p class="m-b-10 f-w-600">City</p>
+                                                                          <h6 class="text-muted f-w-400"><%= person.city %></h6>
+                                                                      </div>
+                                                                  </div>
+                                                                  <ul class="social-link list-unstyled m-t-40 m-b-10">
+                                                                      <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
+                                                                      <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
+                                                                      <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
+                                                                  </ul>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                               </div>
+                                                  </div>
+                                              </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="javascript/main.js"></script>
+</body>
+
+</html>
+<!-- <%- include('./layouts/footer') %> -->

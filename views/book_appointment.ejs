@@ -1,0 +1,115 @@
+<%- include('./layouts/header') %>
+
+<div class="cennn">
+  <h1 style="color: white;">Book an Appointment</h1>
+
+  <% if (errors && errors.length > 0) { %>
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+
+  <form action="/book-appointment" method="POST" class="lg-form formm">
+    <div class="wwww">
+      <label for="specialization">Specialization:</label>
+      <select name="specialization" id="specialization" style="width: 100%; height: 42px; border-radius: 8px; background-color: #EAEAEA;" required>
+        <option value="">Select Specialization</option>
+        <!-- Specializations will be populated here by JavaScript -->
+      </select>
+    </div>
+
+    <div class="wwww">
+      <label for="doctor">Doctor:</label>
+      <select name="doctor" id="doctor" style="width: 100%; height: 42px; border-radius: 8px; background-color: #EAEAEA;" required>
+        <option value="">Select Doctor</option>
+        <!-- Doctors will be populated here by JavaScript -->
+      </select>
+    </div>
+    
+    <div class="wwww">
+      <label for="date">Date:</label>
+      <input type="date" name="date" id="date" required>
+    </div>
+    
+    <div class="wwww">
+      <label for="time">Time:</label>
+      <input type="time" name="time" id="time" required>
+    </div>
+    
+    <div class="wwww">
+      <label for="patientName">Patient Name:</label>
+      <input type="text" name="patientName" id="patientName" required>
+    </div>
+    
+    <div class="wwww">
+      <label for="patientAge">Patient Age:</label>
+      <input type="number" name="patientAge" id="patientAge" required>
+    </div>
+    
+    <div class="wwww">
+      <label for="patientGender">Patient Gender:</label>
+      <select name="patientGender" id="patientGender" style="width: 40%; height: 40px; border-radius: 8px;" required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    
+    <div class="wwww">
+      <div>
+        <input type="submit" value="Book Appointment" />
+      </div>
+    </div>
+  </form>
+</div>
+
+<%- include('./layouts/footer') %>
+
+<script>
+  // Fetch specializations on page load
+  window.onload = async () => {
+    try {
+      const response = await fetch('/api/specializations');
+      const data = await response.json();
+      const specializationSelect = document.getElementById('specialization');
+      
+      data.specializations.forEach(specialization => {
+        const option = document.createElement('option');
+        option.value = specialization;
+        option.text = specialization;
+        specializationSelect.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Error fetching specializations:', error);
+    }
+  };
+
+  // Fetch doctors based on selected specialization
+  async function fetchDoctors() {
+    const specializationSelect = document.getElementById('specialization');
+    const doctorSelect = document.getElementById('doctor');
+    doctorSelect.innerHTML = '<option value="">Select Doctor</option>'; // Clear previous options
+
+    if (specializationSelect.value) {
+      try {
+        const response = await fetch(`/api/doctors?specialization=${specializationSelect.value}`);
+        const data = await response.json();
+        
+        data.doctors.forEach(doctor => {
+          const option = document.createElement('option');
+          option.value = doctor._id;
+          option.text = doctor.name;
+          doctorSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      }
+    }
+  }
+
+  // Attach event listener to specialization dropdown
+  document.getElementById('specialization').addEventListener('change', fetchDoctors);
+</script>

@@ -1,0 +1,27 @@
+<%- include('./layouts/header') %>
+
+<div class="cenn">
+  <h1 style="color: white;" >Login</h1>
+
+  <form action="/login" method="post" class="19-form forming">
+    <div class="flex">
+      <label for="email">Email/Username</label>
+      <input type="email" name="email" id="email" class="input" placeholder="Email"/>
+    </div>
+    <div class="flex">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" class="input" placeholder="Password" />
+    </div>
+    <div>
+    <input type="submit" value="Login" class="submit" />
+  </div>
+</form>
+<div>
+  <p class="p">
+    Don't have an account? <span class="a"><a href="/register">Register</a></span>
+  </p>
+</div>
+<br />
+</div>
+
+<%- include('./layouts/footer') %>

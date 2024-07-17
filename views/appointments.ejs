@@ -1,0 +1,49 @@
+<%- include('./layouts/header') %>
+<div class="cent" style="display: flex; justify-content:center">
+    <h1>Appointment Details</h1>
+</div>
+
+<table style="width: 100vw; border:1px solid EAEAEA">
+    <tr style="border-bottom: 3px solid #EAEAEA;height: 40px;background-color:#007BFF;color:white">
+        <th style="width: 16.6%;">Appointment Date</th>
+        <th style="width: 16.6%;">Appointment Time</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>City</th>
+    </tr>
+    <% 
+    // Sort appointments array based on appointment date in ascending order
+    appointments.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    // Function to get a unique key for each appointment to identify duplicates
+    function getAppointmentKey(appointment) {
+        return `${appointment.doctor}-${appointment.date.toISOString()}-${appointment.time}-${appointment.patientName}`;
+    }
+
+    const uniqueAppointments = [];
+    const seenKeys = new Set();
+
+    appointments.forEach(appointment => {
+        const key = getAppointmentKey(appointment);
+        if (!seenKeys.has(key)) {
+            seenKeys.add(key);
+            uniqueAppointments.push(appointment);
+        }
+    });
+
+    uniqueAppointments.forEach(appointment => { %>
+    <tr>
+        <td><%= new Date(appointment.date).toDateString() %></td>
+        <td><%= appointment.time12hr %></td> <!-- Display time in 12-hour format -->
+        <td><%= appointment.patientName %></td>
+        <td><%= appointment.user.email %></td>
+        <td><%= appointment.user.address %></td>
+        <td><%= appointment.user.city %></td>
+    </tr>
+    <% }) %>
+</table>
+<%- include('./layouts/footer') %>
+
+</body>
+</html>
